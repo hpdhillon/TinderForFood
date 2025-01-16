@@ -86,6 +86,8 @@ if sentence:
 
         chatgpt_response = response.choices[0].message.content
 
+        empty_mechanism.image(f'{chatgpt_response}.jpg')
+
         chatgpt_response = ', ' + chatgpt_response
 
         st.session_state.responses_to_avoid += chatgpt_response
@@ -94,7 +96,6 @@ if sentence:
 
         st.write(st.session_state.responses_to_avoid)
 
-        empty_mechanism.image(f'{chatgpt_response}.jpg')
 
 
     if 'button' not in st.session_state:

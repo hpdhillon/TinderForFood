@@ -61,6 +61,8 @@ if sentence:
             file.truncate(0)
             file.write(chatgpt_response)
 
+        st.write("stuck_here")
+
 
     def reload():
         empty_mechanism.empty()

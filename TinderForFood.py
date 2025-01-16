@@ -90,10 +90,9 @@ if sentence:
 
         st.session_state.responses_to_avoid += chatgpt_response
 
-        print(st.session_state.responses_to_avoid)
         print(messages)
 
-        st.write(chatgpt_response)
+        st.write(st.session_state.responses_to_avoid)
 
         empty_mechanism.image(f'{chatgpt_response}.jpg')
 

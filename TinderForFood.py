@@ -76,11 +76,3 @@ if st.button("❌"):
             messages=messages,
             max_tokens=40  # Expecting a single number as output
         )
-
-        columns = st.columns(3)
-        with columns[0]:
-            st.button(
-                "❌")
-        with columns[2]:
-            st.button(
-                "✅")

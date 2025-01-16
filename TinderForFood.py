@@ -16,6 +16,8 @@ client = OpenAI(api_key = openai_key)
 sentence = st.text_area("what are you hungry for?")
 # Create the messages based on the jpg files
 
+
+st.session_state.responses_to_avoid = ''
 if not st.session_state.responses_to_avoid:
     chatgpt_response = ''
 

@@ -47,12 +47,6 @@ else:
     with columns[0]:
         st.button(
             "❌")
-    with columns[1]:
-        st.button(
-            "⏮️")
-    with columns[2]:
-        st.button(
-            "⏭️")
     with columns[3]:
         st.button(
             "✅")

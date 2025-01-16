@@ -61,7 +61,7 @@ try:
 
         chatgpt_response = response.choices[0].message.content
 
-        st.image(f'{chatgpt_response}.jpg')
+        st.image(f'{chatgpt_response}.jpg', caption = f'How about a {chatgpt_response.replace("-", " ")}?')
 
         chatgpt_response = ', ' + chatgpt_response
 

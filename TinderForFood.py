@@ -41,7 +41,7 @@ if not st.button("Submit"):
                     max_tokens=40  # Expecting a single number as output
     )
 
-elif st.button("Submit"):
+else:
 
     test_items = [
         dict(

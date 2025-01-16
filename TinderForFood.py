@@ -43,12 +43,16 @@ if sentence:
         max_tokens=40  # Expecting a single number as output
     )
 
+    empty_mechanism = st.empty()
+
     chatgpt_response = response.choices[0].message.content
-    st.image(f'{chatgpt_response}.jpg')
+    empty_mechanism.image(f'{chatgpt_response}.jpg')
 
     st.session_state.responses_to_avoid = chatgpt_response
 
     def reload():
+        empty_mechanism.empty()
+    
         if 'responses_to_avoid' not in st.session_state:
             st.session_state.responses_to_avoid = ""
 
@@ -82,7 +86,7 @@ if sentence:
 
         st.session_state.responses_to_avoid += chatgpt_response
 
-        st.image(f'{chatgpt_response}.jpg')
+        empty_mechanism.image(f'{chatgpt_response}.jpg')
 
 
     if 'button' not in st.session_state:

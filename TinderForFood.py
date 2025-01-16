@@ -104,4 +104,4 @@ if sentence:
 
     st.button('✅', on_click=click_button)
 
-    st.button('❌', on_click=reload())
+    st.button('❌', on_click=reload)

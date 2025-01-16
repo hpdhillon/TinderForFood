@@ -43,7 +43,7 @@ if not st.button("Submit"):
         max_tokens=40  # Expecting a single number as output
     )
 
-else:
+if st.button("Submit"):
     st.image(f'{response.choices[0].message.content}.jpg')
     columns = st.columns(3)
     with columns[0]:

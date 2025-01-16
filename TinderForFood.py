@@ -42,9 +42,6 @@ if not st.button("Submit"):
     )
 
 elif st.button("Submit"):
-    st.write(response.choices[0].message.content)
-
-    st.image(f"{response.choices[0].message.content}.jpg")
 
     test_items = [
         dict(

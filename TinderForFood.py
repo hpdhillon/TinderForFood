@@ -46,6 +46,9 @@ if sentence:
     empty_mechanism = st.empty()
 
     chatgpt_response = response.choices[0].message.content
+
+    chatgpt_response = chatgpt_response.remove('Response: ')
+
     empty_mechanism.image(f'{chatgpt_response}.jpg')
 
     st.session_state.responses_to_avoid = chatgpt_response
@@ -71,7 +74,7 @@ if sentence:
                     6. Hot Dog, Response: hot-dog\n
                     7. Steak, Response: steak\n
                     '''
-                    + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}, user doesn't like: {st.session_state.responses_to_avoid}, take that into account"
+                    + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE. EX: Slice of Pizza = slice-of-pizza\n\nUser Input: {sentence}, user doesn't like: {st.session_state.responses_to_avoid}, take that into account"
                 )
             }
         ]

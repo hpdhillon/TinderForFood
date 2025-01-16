@@ -51,11 +51,16 @@ if sentence:
 
     empty_mechanism.image(f'{chatgpt_response}.jpg')
 
-    st.session_state.responses_to_avoid = chatgpt_response
+    # Clear the text file and add the chatgpt_response to it
+    with open('responses.txt', 'w') as file:
+        file.truncate(0)
+        file.write(chatgpt_response)
 
 
     def reload():
         empty_mechanism.empty()
+
+        st.session_state.responses_to_avoid = open('responses.txt').read()
 
         messages = [
             {"role": "system", "content": "You are an autonomous agent."},
@@ -90,11 +95,8 @@ if sentence:
 
         chatgpt_response = ', ' + chatgpt_response
 
-        global st.session_state.responses_to_avoid 
-
-        st.session_state.responses_to_avoid += chatgpt_response
-
-        st.write(st.session_state.responses_to_avoid)
+        with open('responses.txt', 'w') as file:
+            file.write(chatgpt_response)
 
 
 

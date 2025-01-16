@@ -12,10 +12,10 @@ openai_key = st.secrets["openai"]
 
 client = OpenAI(api_key = openai_key)
 
-if not st.button("Submit"):
-    # Get user input
-    sentence = st.text_area("what are you hungry for?")
+# Get user input
+sentence = st.text_area("what are you hungry for?")
 
+if st.button("Submit"):
     # Create the messages based on the jpg files
     messages = [
         {"role": "system", "content": "You are an autonomous agent."},
@@ -42,10 +42,6 @@ if not st.button("Submit"):
         messages=messages,
         max_tokens=40  # Expecting a single number as output
     )
-
-    st.write(response.choices[0].message.content)
-
-else:
     st.image(f'{response.choices[0].message.content}.jpg')
     columns = st.columns(3)
     with columns[0]:

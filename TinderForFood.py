@@ -53,6 +53,8 @@ if sentence:
 
     st.session_state.responses_to_avoid = chatgpt_response
 
+    st.write(chatgpt_response)
+
     def reload():
         empty_mechanism.empty()
 

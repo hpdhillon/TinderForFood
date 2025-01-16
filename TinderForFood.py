@@ -47,7 +47,7 @@ if sentence:
     st.image(f'{chatgpt_response}.jpg')
 
     responses_to_avoid = ""
-    def reload():
+    def reload(responses_to_avoid):
         responses_to_avoid += chatgpt_response
         messages = [
         {"role": "system", "content": "You are an autonomous agent."},
@@ -88,4 +88,4 @@ if sentence:
 
     st.button('✅', on_click=click_button)
 
-    st.button('❌', on_click=reload)
+    st.button('❌', on_click=reload(responses_to_avoid))

@@ -53,7 +53,6 @@ if sentence:
 
     st.session_state.responses_to_avoid = chatgpt_response
 
-    st.write(chatgpt_response)
 
     def reload():
         empty_mechanism.empty()
@@ -87,7 +86,9 @@ if sentence:
 
         chatgpt_response = response.choices[0].message.content
 
-        st.session_state.responses_to_avoid += (chatgpt_response + ', ')
+        chatgpt_response = ', ' + chatgpt_response
+
+        st.session_state.responses_to_avoid += chatgpt_response
 
         print(messages)
 

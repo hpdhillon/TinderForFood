@@ -46,16 +46,16 @@ else:
     columns = st.columns(4)
     with columns[0]:
         st.button(
-            "❌", key=f'no_{st.session_state.counter}', on_click=self.save_results_no)
+            "❌")
     with columns[1]:
         st.button(
-            "⏮️", key=f'back_{st.session_state.counter}', on_click=self.decrease_counter)
+            "⏮️")
     with columns[2]:
         st.button(
-            "⏭️", key=f'skip_{st.session_state.counter}', on_click=self.increase_counter)
+            "⏭️")
     with columns[3]:
         st.button(
-            "✅", key=f'yes_{st.session_state.counter}', on_click=self.save_results_yes)
+            "✅")
 
 
     '''

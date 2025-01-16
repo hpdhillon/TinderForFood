@@ -79,6 +79,7 @@ if sentence:
             }
         ]
 
+
         response = client.chat.completions.create(
             model="gpt-4",
             messages=messages,
@@ -88,6 +89,9 @@ if sentence:
         chatgpt_response = response.choices[0].message.content
 
         st.session_state.responses_to_avoid += chatgpt_response
+
+        print(st.session_state.responses_to_avoid)
+        print(messages)
 
         empty_mechanism.image(f'{chatgpt_response}.jpg')
 

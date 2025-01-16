@@ -46,27 +46,30 @@ if sentence:
     chatgpt_response = response.choices[0].message.content
     st.image(f'{chatgpt_response}.jpg')
 
-    responses_to_avoid = ""
-    def reload(responses_to_avoid):
-        responses_to_avoid += chatgpt_response
+    st.session_state.responses_to_avoid = chatgpt_response
+
+    def reload():
+        if 'responses_to_avoid' not in st.session_state:
+            st.session_state.responses_to_avoid = ""
+
         messages = [
-        {"role": "system", "content": "You are an autonomous agent."},
-        {
-            "role": "user",
-            "content": (
-                '''Based on the user input, give a response that 
-                indicates which food they should eat. \n
-                1. Slice of Pizza: Response: slice-of-pizza\n
-                2. Burger: Response: burger\n
-                3. French Fries, Response: french-fries\n
-                4. Grilled Chicken Sandwich, Response: grilled-chicken-sandwich\n
-                5. BBQ Ribs, Response: bbq-ribs\n
-                6. Hot Dog, Response: hot-dog\n
-                7. Steak, Response: steak\n
-                '''
-                + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}, user doesn't like: {responses_to_avoid}, take that into account"
-            )
-        }
+            {"role": "system", "content": "You are an autonomous agent."},
+            {
+                "role": "user",
+                "content": (
+                    '''Based on the user input, give a response that 
+                    indicates which food they should eat. \n
+                    1. Slice of Pizza: Response: slice-of-pizza\n
+                    2. Cheeseburger: Response: cheeseburger\n
+                    3. French Fries, Response: french-fries\n
+                    4. Grilled Chicken Sandwich, Response: grilled-chicken-sandwich\n
+                    5. BBQ Ribs, Response: bbq-ribs\n
+                    6. Hot Dog, Response: hot-dog\n
+                    7. Steak, Response: steak\n
+                    '''
+                    + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}, user doesn't like: {st.session_state.responses_to_avoid}, take that into account"
+                )
+            }
         ]
 
         response = client.chat.completions.create(
@@ -76,6 +79,8 @@ if sentence:
         )
 
         chatgpt_response = response.choices[0].message.content
+
+        st.session_state.responses_to_avoid += chatgpt_response
 
         st.image(f'{chatgpt_response}.jpg')
 
@@ -88,4 +93,4 @@ if sentence:
 
     st.button('✅', on_click=click_button)
 
-    st.button('❌', on_click=reload(responses_to_avoid))
+    st.button('❌', on_click=reload())

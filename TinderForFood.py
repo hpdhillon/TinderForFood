@@ -98,6 +98,7 @@ if sentence:
         with open('responses.txt', 'w') as file:
             file.write(chatgpt_response)
 
+        st.write(st.session_state.responses_to_avoid)
 
 
     if 'button' not in st.session_state:
@@ -106,6 +107,7 @@ if sentence:
     def click_button():
         st.session_state.button = not st.session_state.button
 
+    st.columns(2)
     st.button('✅', on_click=click_button)
 
     st.button('❌', on_click=reload)

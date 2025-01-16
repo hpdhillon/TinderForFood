@@ -5,9 +5,8 @@ import numpy as np
 st.title('Tinder for Food! Start Swiping!')
 
 from openai import OpenAI
+import os
 
-
-from streamlit_carousel import carousel
 
 openai_key = st.secrets["openai"]
 
@@ -18,73 +17,64 @@ if not st.button("Submit"):
     sentence = st.text_area("what are you hungry for?")
 
 
+    # Get the list of jpg files in the folder
+    folder_path = '/f:/TinderForFood/images'
+    jpg_files = [f for f in os.listdir(folder_path) if f.endswith('.jpg')]
+
+    # Create the messages based on the jpg files
+    messages = [
+        {"role": "system", "content": "You are an autonomous agent."},
+        {
+            "role": "user",
+            "content": (
+                '''Based on the user input, give a response that 
+                indicates which food they should eat.\n\n'''
+                + "\n".join([f"{i+1}. {file.split('.')[0].replace('_', ' ').title()}: Response: {file.split('.')[0]}" for i, file in enumerate(jpg_files)])
+                + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}"
+            )
+        }
+    ]
+
     response = client.chat.completions.create(
-                    model="gpt-4o",  # Specify the model you wish to use
-                    messages=[
-                        {"role": "system", "content": "You are an autonomous agent."},
-                        {
-                            "role": "user",
-                            "content": (
-                                '''Based on the user input, give a response that 
-                                indicates which food they should eat.
-
-                                1. A Slice of Pizza: Response: slice_of_pizza"
-                                2. Grilled Chicken Sandwich: Response: grilled_chicken_sandwich
-                                3. Cheeseburger: Response: cheeseburger
-
-                                ONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE
-                                .\n\n'''
-                                f"User Input: {sentence}"
-                            )
-                        }
-                    ],
-                    max_tokens=40  # Expecting a single number as output
+        model="gpt-4",
+        messages=messages,
+        max_tokens=40  # Expecting a single number as output
     )
 
 else:
-
-    columns = st.columns(4)
+    st.image(f'{response.choices[0].message.content}.jpg')
+    columns = st.columns(3)
     with columns[0]:
         st.button(
             "❌")
-    with columns[3]:
+    with columns[2]:
         st.button(
             "✅")
 
-
-    '''
-        test_items = [
-            dict(
-                title="Slide 1",
-                text="A tree in the savannah",
-                img="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=1380&t=st=1688825493~exp=1688826093~hmac=cb486d2646b48acbd5a49a32b02bda8330ad7f8a0d53880ce2da471a45ad08a4",
-                link="https://discuss.streamlit.io/t/new-component-react-bootstrap-carousel/46819",
-            ),
-            dict(
-                title="Slide 2",
-                text="A wooden bridge in a forest in Autumn",
-                img="https://img.freepik.com/free-photo/beautiful-wooden-pathway-going-breathtaking-colorful-trees-forest_181624-5840.jpg?w=1380&t=st=1688825780~exp=1688826380~hmac=dbaa75d8743e501f20f0e820fa77f9e377ec5d558d06635bd3f1f08443bdb2c1",
-                link="https://github.com/thomasbs17/streamlit-contributions/tree/master/bootstrap_carousel",
-            ),
-            dict(
-                title="Slide 3",
-                text="A distant mountain chain preceded by a sea",
-                img="https://img.freepik.com/free-photo/aerial-beautiful-shot-seashore-with-hills-background-sunset_181624-24143.jpg?w=1380&t=st=1688825798~exp=1688826398~hmac=f623f88d5ece83600dac7e6af29a0230d06619f7305745db387481a4bb5874a0",
-                link="https://github.com/thomasbs17/streamlit-contributions/tree/master",
-            ),
-            dict(
-                title="Slide 4",
-                text="PANDAS",
-                img="pandas.webp",
-            ),
-            dict(
-                title="Slide 4",
-                text="CAT",
-                img="cat.jpg",
-            ),
+    while not st.button( "✅"):
+        messages = [
+        {"role": "system", "content": "You are an autonomous agent."},
+        {
+            "role": "user",
+            "content": (
+                '''Based on the user input, give a response that 
+                indicates which food they should eat.\n\n'''
+                + "\n".join([f"{i+1}. {file.split('.')[0].replace('_', ' ').title()}: Response: {file.split('.')[0]}" for i, file in enumerate(jpg_files)])
+                + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}"
+            )
+        }
         ]
 
-        carousel(items=test_items)
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=messages,
+            max_tokens=40  # Expecting a single number as output
+        )
 
-    '''
-
+        columns = st.columns(3)
+        with columns[0]:
+            st.button(
+                "❌")
+        with columns[2]:
+            st.button(
+                "✅")

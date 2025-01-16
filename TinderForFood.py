@@ -29,7 +29,7 @@ if not st.button("Submit"):
             "content": (
                 '''Based on the user input, give a response that 
                 indicates which food they should eat.\n\n'''
-                + "\n".join([f"{i+1}. {file.split('.')[0].replace('_', ' ').title()}: Response: {file.split('.')[0]}" for i, file in enumerate(jpg_files)])
+                + "\n".join([f"{i+1}. {file.split('.')[0].replace('-', ' ').title()}: Response: {file.split('.')[0]}" for i, file in enumerate(jpg_files)])
                 + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}"
             )
         }

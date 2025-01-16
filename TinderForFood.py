@@ -107,17 +107,14 @@ def reload():
         file.write(chatgpt_response)
 
     st.write(st.session_state.responses_to_avoid)
-
 while not st.session_state.button:
+    if 'button' not in st.session_state:
+        st.session_state.button = False
 
+    def click_button():
+        st.session_state.button = not st.session_state.button
 
-if 'button' not in st.session_state:
-    st.session_state.button = False
+    st.columns(2)
+    st.button('✅', on_click=click_button)
 
-def click_button():
-    st.session_state.button = not st.session_state.button
-
-st.columns(2)
-st.button('✅', on_click=click_button)
-
-st.button('❌', on_click=reload)
+    st.button('❌', on_click=reload)

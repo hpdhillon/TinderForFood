@@ -16,6 +16,8 @@ st.session_state.responses_to_avoid = ''
 if st.session_state.responses_to_avoid == '':
     chatgpt_response = ''
 
+sentence = "im hungry"
+
 
 messages = [
     {"role": "system", "content": "You are an autonomous agent."},

@@ -45,13 +45,6 @@ if sentence:
 
     chatgpt_response = response.choices[0].message.content
     st.image(f'{chatgpt_response}.jpg')
-    columns = st.columns(3)
-    with columns[0]:
-        st.button(
-            "❌")
-    with columns[2]:
-        st.button(
-            "✅")
 
     responses_to_avoid = ""
     if st.button("❌"):

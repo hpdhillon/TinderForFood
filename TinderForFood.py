@@ -16,11 +16,6 @@ if not st.button("Submit"):
     # Get user input
     sentence = st.text_area("what are you hungry for?")
 
-
-    # Get the list of jpg files in the folder
-    folder_path = '/f:/TinderForFood/images'
-    jpg_files = [f for f in os.listdir(folder_path) if f.endswith('.jpg')]
-
     # Create the messages based on the jpg files
     messages = [
         {"role": "system", "content": "You are an autonomous agent."},
@@ -28,8 +23,15 @@ if not st.button("Submit"):
             "role": "user",
             "content": (
                 '''Based on the user input, give a response that 
-                indicates which food they should eat.\n\n'''
-                + "\n".join([f"{i+1}. {file.split('.')[0].replace('-', ' ').title()}: Response: {file.split('.')[0]}" for i, file in enumerate(jpg_files)])
+                indicates which food they should eat. \n
+                1. Slice of Pizza: Response: slice-of-pizza\n
+                2. Burger: Response: burger\n
+                3. French Fries, Response: french-fries\n
+                4. Grilled Chicken Sandwich, Response: grilled-chicken-sandwich\n
+                5. BBQ Ribs, Response: bbq-ribs\n
+                6. Hot Dog, Response: hot-dog\n
+                7. Steak, Response: steak\n
+                '''
                 + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}"
             )
         }
@@ -58,8 +60,15 @@ else:
             "role": "user",
             "content": (
                 '''Based on the user input, give a response that 
-                indicates which food they should eat.\n\n'''
-                + "\n".join([f"{i+1}. {file.split('.')[0].replace('_', ' ').title()}: Response: {file.split('.')[0]}" for i, file in enumerate(jpg_files)])
+                indicates which food they should eat. \n
+                1. Slice of Pizza: Response: slice-of-pizza\n
+                2. Burger: Response: burger\n
+                3. French Fries, Response: french-fries\n
+                4. Grilled Chicken Sandwich, Response: grilled-chicken-sandwich\n
+                5. BBQ Ribs, Response: bbq-ribs\n
+                6. Hot Dog, Response: hot-dog\n
+                7. Steak, Response: steak\n
+                '''
                 + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}"
             )
         }

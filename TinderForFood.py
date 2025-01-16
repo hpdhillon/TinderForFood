@@ -16,7 +16,7 @@ client = OpenAI(api_key = openai_key)
 sentence = st.text_area("what are you hungry for?")
 # Create the messages based on the jpg files
 
-if sentence:
+if sentence and 'responses_to_avoid' not in st.session_state:
     messages = [
         {"role": "system", "content": "You are an autonomous agent."},
         {
@@ -53,11 +53,11 @@ if sentence:
 
     st.session_state.responses_to_avoid = chatgpt_response
 
+if 'responses_to_avoid' in st.session_state:
+
     def reload():
         empty_mechanism.empty()
     
-        if 'responses_to_avoid' not in st.session_state:
-            st.session_state.responses_to_avoid = ""
 
         messages = [
             {"role": "system", "content": "You are an autonomous agent."},
@@ -81,7 +81,7 @@ if sentence:
 
 
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4o",
             messages=messages,
             max_tokens=40  # Expecting a single number as output
         )

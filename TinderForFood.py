@@ -72,7 +72,7 @@ if sentence:
                     6. Hot Dog, Response: hot-dog\n
                     7. Steak, Response: steak\n
                     '''
-                    + f"\n\nONLY ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE. EX: Slice of Pizza = slice-of-pizza\n\nUser Input: {sentence}, user doesn't like: {st.session_state.responses_to_avoid}, take that into account"
+                    + f"\n\nONLY ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE. EX: Slice of Pizza = slice-of-pizza\n\nUser Input: {sentence}, don't recommend any of: {st.session_state.responses_to_avoid}, take that into account"
                 )
             }
         ]

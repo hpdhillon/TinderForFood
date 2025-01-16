@@ -42,7 +42,9 @@ if sentence:
         messages=messages,
         max_tokens=40  # Expecting a single number as output
     )
-    st.image(f'{response.choices[0].message.content}.jpg')
+
+    chatgpt_response = response.choices[0].message.content
+    st.image(f'{chatgpt_response}.jpg')
     columns = st.columns(3)
     with columns[0]:
         st.button(
@@ -51,8 +53,10 @@ if sentence:
         st.button(
             "✅")
 
+    responses_to_avoid = ""
     if st.button("❌"):
         while not st.button( "✅"):
+            responses_to_avoid += chatgpt_response
             messages = [
             {"role": "system", "content": "You are an autonomous agent."},
             {
@@ -68,7 +72,7 @@ if sentence:
                     6. Hot Dog, Response: hot-dog\n
                     7. Steak, Response: steak\n
                     '''
-                    + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}, user doesn't like: {response.choices[0].message.content}, take that into account"
+                    + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}, user doesn't like: {responses_to_avoid}, take that into account"
                 )
             }
             ]

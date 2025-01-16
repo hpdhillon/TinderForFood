@@ -38,12 +38,14 @@ if not st.button("Submit"):
     ]
 
     response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4o",
         messages=messages,
         max_tokens=40  # Expecting a single number as output
     )
 
-if st.button("Submit"):
+    st.write(response.choices[0].message.content)
+
+else:
     st.image(f'{response.choices[0].message.content}.jpg')
     columns = st.columns(3)
     with columns[0]:

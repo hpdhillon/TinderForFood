@@ -86,6 +86,9 @@ if sentence:
 
         chatgpt_response = response.choices[0].message.content
 
+        empty_mechanism = st.empty()
+
+
         empty_mechanism.image(f'{chatgpt_response}.jpg')
 
         chatgpt_response = ', ' + chatgpt_response

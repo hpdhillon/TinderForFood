@@ -20,7 +20,7 @@ try:
 
     swiping_empty_mechanism = st.empty()
     if st.session_state.counter == 1:
-        swiping_empty_mechanism.image(f'{st.session_state.responses_to_avoid}.jpg')
+        swiping_empty_mechanism.image(f'{st.session_state.responses_to_avoid}.jpg', caption=f"How about {st.session_state.responses_to_avoid.replace("-", " ")}?")
 
 
 

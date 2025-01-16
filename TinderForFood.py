@@ -37,7 +37,8 @@ response = client.chat.completions.create(
                 max_tokens=40  # Expecting a single number as output
 )
 
-st.write(response.choices[0].message.content)
+if st.button("Submit"):
+    st.write(response.choices[0].message.content)
 
-st.image(f"{response.choices[0].message.content}.jpg")
+    st.image(f"{response.choices[0].message.content}.jpg")
 

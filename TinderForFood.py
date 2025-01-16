@@ -90,7 +90,9 @@ if sentence:
 
         chatgpt_response = ', ' + chatgpt_response
 
-        st.session_state.responses_to_avoid = st.session_state.responses_to_avoid + chatgpt_response
+        global st.session_state.responses_to_avoid 
+
+        st.session_state.responses_to_avoid += chatgpt_response
 
         st.write(st.session_state.responses_to_avoid)
 

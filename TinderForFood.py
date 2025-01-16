@@ -49,6 +49,7 @@ if sentence:
         max_tokens=40  # Expecting a single number as output
     )
 
+    st.write(chatgpt_response)
 
     if chatgpt_response=='':
         empty_mechanism = st.empty()

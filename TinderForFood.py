@@ -37,5 +37,7 @@ response = client.chat.completions.create(
                 max_tokens=40  # Expecting a single number as output
 )
 
+st.write(response.choices[0].message.content)
+
 st.image(f"https://source.unsplash.com/featured/?{response.choices[0].message.content}", use_column_width=True)
 

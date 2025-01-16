@@ -16,7 +16,7 @@ client = OpenAI(api_key = openai_key)
 sentence = st.text_area("what are you hungry for?")
 # Create the messages based on the jpg files
 
-if sentence and 'responses_to_avoid' not in st.session_state:
+if sentence:
     messages = [
         {"role": "system", "content": "You are an autonomous agent."},
         {
@@ -32,7 +32,7 @@ if sentence and 'responses_to_avoid' not in st.session_state:
                 6. Hot Dog, Response: hot-dog\n
                 7. Steak, Response: steak\n
                 '''
-                + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}"
+                + f"\n\nONLY ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}"
             )
         }
     ]
@@ -53,11 +53,8 @@ if sentence and 'responses_to_avoid' not in st.session_state:
 
     st.session_state.responses_to_avoid = chatgpt_response
 
-if 'responses_to_avoid' in st.session_state:
-
     def reload():
         empty_mechanism.empty()
-    
 
         messages = [
             {"role": "system", "content": "You are an autonomous agent."},
@@ -74,7 +71,7 @@ if 'responses_to_avoid' in st.session_state:
                     6. Hot Dog, Response: hot-dog\n
                     7. Steak, Response: steak\n
                     '''
-                    + f"\n\nONLY ANSWER WITH THE RESPONSES ABOVE, NOT A WORD LESS OR MORE. EX: Slice of Pizza = slice-of-pizza\n\nUser Input: {sentence}, user doesn't like: {st.session_state.responses_to_avoid}, take that into account"
+                    + f"\n\nONLY ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE. EX: Slice of Pizza = slice-of-pizza\n\nUser Input: {sentence}, user doesn't like: {st.session_state.responses_to_avoid}, take that into account"
                 )
             }
         ]

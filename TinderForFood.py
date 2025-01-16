@@ -13,7 +13,7 @@ client = OpenAI(api_key = openai_key)
 
 try:
         
-    st.session_state.responses_to_avoid
+    print(st.session_state.responses_to_avoid)
 
     #st.title('Tinder for Food! Start Swiping!')
 

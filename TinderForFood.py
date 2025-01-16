@@ -106,7 +106,7 @@ if sentence:
 
         st.write(chatgpt_response)
 
-        empty_mechanism.image(f'{chatgpt_response}.jpg')
+        st.image(f'{chatgpt_response}.jpg')
 
         chatgpt_response = ', ' + chatgpt_response
 

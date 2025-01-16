@@ -81,7 +81,7 @@ if sentence:
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=messages,
-            max_tokens=40  # Expecting a single number as output
+            max_tokens=40  # Expecting a filename as output
         )
 
         chatgpt_response = response.choices[0].message.content
@@ -90,9 +90,7 @@ if sentence:
 
         chatgpt_response = ', ' + chatgpt_response
 
-        st.session_state.responses_to_avoid += chatgpt_response
-
-        print(messages)
+        st.session_state.responses_to_avoid = st.session_state.responses_to_avoid + chatgpt_response
 
         st.write(st.session_state.responses_to_avoid)
 

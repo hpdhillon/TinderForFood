@@ -89,6 +89,8 @@ if sentence:
             }
         ]
 
+        st.write(f"\n\nONLY ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE. EX: Slice of Pizza = slice-of-pizza\n\nUser Input: {sentence}, don't recommend any of: {st.session_state.responses_to_avoid}, take that into account")
+
 
         response = client.chat.completions.create(
             model="gpt-4o",
@@ -97,6 +99,8 @@ if sentence:
         )
 
         chatgpt_response = response.choices[0].message.content
+
+        st.write(chatgpt_response)
 
         empty_mechanism.image(f'{chatgpt_response}.jpg')
 

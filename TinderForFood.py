@@ -16,6 +16,9 @@ client = OpenAI(api_key = openai_key)
 sentence = st.text_area("what are you hungry for?")
 # Create the messages based on the jpg files
 
+chatgpt_response = ''
+
+
 if sentence:
     messages = [
         {"role": "system", "content": "You are an autonomous agent."},
@@ -43,18 +46,20 @@ if sentence:
         max_tokens=40  # Expecting a single number as output
     )
 
-    empty_mechanism = st.empty()
 
-    chatgpt_response = response.choices[0].message.content
+    if chatgpt_response=='':
+        empty_mechanism = st.empty()
 
-    chatgpt_response = chatgpt_response.replace('Response: ', '')
+        chatgpt_response = response.choices[0].message.content
 
-    empty_mechanism.image(f'{chatgpt_response}.jpg')
+        chatgpt_response = chatgpt_response.replace('Response: ', '')
 
-    # Clear the text file and add the chatgpt_response to it
-    with open('responses.txt', 'w') as file:
-        file.truncate(0)
-        file.write(chatgpt_response)
+        empty_mechanism.image(f'{chatgpt_response}.jpg')
+
+        # Clear the text file and add the chatgpt_response to it
+        with open('responses.txt', 'w') as file:
+            file.truncate(0)
+            file.write(chatgpt_response)
 
 
     def reload():

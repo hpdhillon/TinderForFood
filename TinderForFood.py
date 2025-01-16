@@ -47,7 +47,7 @@ if sentence:
 
     chatgpt_response = response.choices[0].message.content
 
-    chatgpt_response = chatgpt_response.remove('Response: ')
+    chatgpt_response = chatgpt_response.replace('Response: ')
 
     empty_mechanism.image(f'{chatgpt_response}.jpg')
 

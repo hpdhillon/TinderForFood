@@ -88,7 +88,7 @@ if sentence:
 
         chatgpt_response = response.choices[0].message.content
 
-        st.session_state.responses_to_avoid += chatgpt_response
+        st.session_state.responses_to_avoid += (chatgpt_response + ', ')
 
         print(messages)
 

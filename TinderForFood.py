@@ -114,7 +114,7 @@ except:
 
     empty_mechanism = st.empty()
 
-    sentence  = st.text_area("What're you in the mood for?")
+    sentence  = st.text_area("What're you in the mood for? Press Command or Ctrl + Enter to submit.")
 
     st.session_state.sentence = sentence
 

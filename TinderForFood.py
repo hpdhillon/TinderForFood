@@ -71,7 +71,8 @@ try:
                     31. Watermelon: Response: watermelon
                     32. 
                     '''
-                    + f"\n\nONLY ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE. EX: Slice of Pizza = slice-of-pizza\n\nUser Input: {st.session_state.sentence}, don't recommend any of: {st.session_state.responses_to_avoid}"
+                    + f'''\n\TRY YOUR BEST TO ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE. EX: Slice of Pizza = slice-of-pizza\n\nUser Input: I'm in the mood for {st.session_state.sentence}, don't recommend any of: {st.session_state.responses_to_avoid}. 
+                    IF YOU CAN'T RECOMMEND ANY OF THE ABOVE, return just the name of the food.'''
                 )
             }
         ]
@@ -86,7 +87,21 @@ try:
 
         chatgpt_response = response.choices[0].message.content
 
-        st.image(f'{chatgpt_response}.jpg', caption = f'How about a {chatgpt_response.replace("-", " ")}?')
+
+        options = open('filenames.txt').read()
+
+        if chatgpt_response not in options.split('\n'):
+            response = client.images.generate(
+            model="dall-e-3",
+            prompt=f"{chatgpt_response}",
+            size="1024x1024",
+            quality="standard",
+            n=1,
+            )
+            img_url = response.data[0].url
+            st.image(img_url)
+        else:
+            st.image(f'{chatgpt_response}.jpg', caption = f'How about a {chatgpt_response.replace("-", " ")}?')
 
         chatgpt_response = ', ' + chatgpt_response
 
@@ -157,7 +172,7 @@ except:
                 30. Spaghetti and Meatballs: Response: spaghetti-and-meatballs
                 31. Watermelon: Response: watermelon
                 '''
-                + f"\n\nONLY ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: {sentence}"
+                + f"\n\nONLY ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: I'm in the mood for {sentence}"
             )
         }
         ]

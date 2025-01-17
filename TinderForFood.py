@@ -69,7 +69,10 @@ try:
                     29. Rice: Response: rice
                     30. Spaghetti and Meatballs: Response: spaghetti-and-meatballs
                     31. Watermelon: Response: watermelon
-                    32. 
+                    32. Black Bean Tacos: Response: black-bean-tacos
+                    33. Boiled Egg: Response: boiled-egg
+                    34. Fried Rice: Response: fried-rice
+                    35. Sushi: Response: sushi
                     '''
                     + f'''\n\TRY YOUR BEST TO ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE. EX: Slice of Pizza = slice-of-pizza\n\nUser Input: I'm in the mood for {st.session_state.sentence}, don't recommend any of: {st.session_state.responses_to_avoid}. 
                     IF YOU CAN'T RECOMMEND ANY OF THE ABOVE, return just the name of the food.'''
@@ -171,6 +174,10 @@ except:
                 29. Rice: Response: rice
                 30. Spaghetti and Meatballs: Response: spaghetti-and-meatballs
                 31. Watermelon: Response: watermelon
+                32. Black Bean Tacos: Response: black-bean-tacos
+                33. Boiled Egg: Response: boiled-egg
+                34. Fried Rice: Response: fried-rice
+                35. Sushi: Response: sushi
                 '''
                 + f"\n\nONLY ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE.\n\nUser Input: I'm in the mood for {sentence}"
             )

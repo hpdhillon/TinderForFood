@@ -45,6 +45,31 @@ try:
                     5. BBQ Ribs, Response: bbq-ribs\n
                     6. Hot Dog, Response: hot-dog\n
                     7. Steak, Response: steak\n
+                    8. Apple: Response: apple
+                    9. Bacon Wrapped Jalapeno Poppers: Response: bacon-wrapped-jalapeno-poppers
+                    10. Banana: Response: banana
+                    11. Buffalo Wings: Response: buffalo-wings
+                    12. Burrito: Response: burrito
+                    13. Butter Chicken: Response: butter-chicken
+                    14. Cheesesteak: Response: cheesesteak
+                    15. Chicken and Waffles: Response: chicken-and-waffles
+                    16. Clam Chowder: Response: clam-chowder
+                    17. Deep Fried Oreos: Response: deep-fried-oreos
+                    18. Donut: Response: donut
+                    19. Dumplings: Response: dumplings
+                    20. Fried Chicken: Response: fried-chicken
+                    21. Ice Cream: Response: ice-cream
+                    22. Kiwi: Response: kiwi
+                    23. Kung Pao Chicken: Response: kung-pao-chicken
+                    24. Macaroni and Cheese: Response: macaroni-and-cheese
+                    25. Onion Rings: Response: onion-rings
+                    26. Pancakes: Response: pancakes
+                    27. Pasta: Response: pasta
+                    28. Ramen: Response: ramen
+                    29. Rice: Response: rice
+                    30. Spaghetti and Meatballs: Response: spaghetti-and-meatballs
+                    31. Watermelon: Response: watermelon
+                    32. 
                     '''
                     + f"\n\nONLY ANSWER WITH ONE OF THE RESPONSES ABOVE, NOT A WORD LESS OR MORE. EX: Slice of Pizza = slice-of-pizza\n\nUser Input: {st.session_state.sentence}, don't recommend any of: {st.session_state.responses_to_avoid}"
                 )
